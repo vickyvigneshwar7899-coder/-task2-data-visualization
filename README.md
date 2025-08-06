@@ -23,7 +23,36 @@ The dataset includes sales transactions from 2010. I cleaned the data, calculate
 
 - README.md – Project overview  
 - cleaned_online_retail.csv – Cleaned dataset  
-- screenshots – Images of all charts  
+- screenshots – Images of all charts
+  
+ # Data Cleaning Steps
+  
+  import pandas as pd
+
+# Load the Excel file (first 5000 rows for performance)
+df = pd.read_excel("Online Retail.xlsx", nrows=5000)
+
+# Step 1: Drop duplicate rows
+df = df.drop_duplicates()
+
+# Step 2: Standardize column names
+df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')
+
+# Step 3: Remove negative values in 'quantity' and 'unitprice'
+df = df[(df['quantity'] >= 0) & (df['unitprice'] >= 0)]
+
+# Step 4: Fix data types
+df['quantity'] = df['quantity'].astype(int)
+df['unitprice'] = df['unitprice'].astype(float)
+
+# Step 5: Remove rows where stockcode contains alphabets
+df = df[df['stockcode'].astype(str).str.isnumeric()]
+
+# Step 6: Save the cleaned data
+df.to_csv("cleaned_online_retail.csv", index=False)
+
+print("Cleaned dataset saved as 'cleaned_online_retail.csv'")
+
 
 # Data Cleaning Summary
 
@@ -32,7 +61,7 @@ The dataset includes sales transactions from 2010. I cleaned the data, calculate
 - Removed rows with negative quantity or unit price
 - Ensured correct data types for key fields
 - Filtered out non-numeric stock codes
-- Saved the cleaned data as `cleaned_online_retail.csv`
+- Saved the cleaned data as (cleaned_online_retail.csv)
 
 
 # Outcome
