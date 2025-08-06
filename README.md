@@ -25,6 +25,15 @@ The dataset includes sales transactions from 2010. I cleaned the data, calculate
 - cleaned_online_retail.csv – Cleaned dataset  
 - screenshots – Images of all charts  
 
+# Data Cleaning Summary
+
+- Removed duplicates
+- Renamed columns to lowercase with underscores
+- Removed rows with negative quantity or unit price
+- Ensured correct data types for key fields
+- Filtered out non-numeric stock codes
+- Saved the cleaned data as `cleaned_online_retail.csv`
+
 
 # Outcome
 
